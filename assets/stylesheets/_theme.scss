@@ -98,7 +98,35 @@ table {
     padding-bottom: 0.5em;
     vertical-align: top;
   }
+}
 
+li {
+  @include proxima-light;
+  margin:.2em 0 .2em .2em;
+}
+
+ul {
+  list-style:none;
+  margin-bottom: 1em;
+}
+
+ol {
+  margin-left:2em;  
+}
+
+ul ul {
+  margin-left:2em;  
+  list-style: none;
+}
+
+li li {
+  font-size:80%;
+}
+
+ul > li:before, 
+ul > li li:before {
+  content:'\2014';
+  padding-right: .5em;
 }
 
 .slide {
@@ -155,41 +183,7 @@ table {
     line-height: 1.2;
     margin-bottom: 1em;
   }
-  .slide li {
-    @include proxima-light;
-  }
-    
-  .slide > ul {
-    list-style:none;
-    margin-bottom: 1em;
-  }
   
-  .slide ol {
-    margin-left:2em;  
-  }
-    
-    .slide > ul ul {
-      margin-left:2em;  
-      list-style: none;
-    }
-    
-      .slide li li {
-        font-size:80%;
-      }
-      
-    .slide li {
-      margin:.2em 0 .2em .2em;
-    }
-    
-    .slide > ul > li:before {
-      content:'\2014';
-      padding-right: .5em;
-    }
-    
-      .slide li li:before {
-        content: '\2014';
-        padding-right: .5em;
-      }
       
 
 section > header.slide > h1 {
