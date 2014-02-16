@@ -1,0 +1,39 @@
+#cover {
+  padding: 200px 0 0 50px;
+  
+  h1 {
+    @include proxima-black;
+    font-size: 40px;
+  }
+
+  h2 {
+    @include proxima-light-italic;
+    font-size: 24px;
+    margin-bottom: 50px;
+  }
+
+  .attribution {
+    @include proxima-light-italic;
+    font-size: 16px;
+  
+    span {
+      display: block;
+    }
+  }
+}
+
+#css-controls-demo label {
+  display: block;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:0) {
+/* hack to avoid using the Object element in Safari/WebKit, due to WebKit Bug 27190 */
+  object[type="image/svg+xml"] {
+    display: none;
+  }
+  
+  #intro h1 {
+    background: url(logo.svg) no-repeat center;
+    background-size:100% auto;
+  }
+}

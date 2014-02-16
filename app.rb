@@ -10,6 +10,10 @@ class App < Sinatra::Application
     erb :index
   end
 
+  get "/module/1" do
+    erb :module1
+  end
+
   not_found do
     erb :'404'
   end

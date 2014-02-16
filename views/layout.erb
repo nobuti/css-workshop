@@ -4,7 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>CSS: Introduction</title>
+
+    <script type="text/javascript" src="//use.typekit.net/nno2nyn.js"></script>    
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="/javascript/prefixfree.min.js"></script>
   </head>
 
   <body>
@@ -12,5 +17,8 @@
       <%= yield %>
     </div>
     <script src="/javascript/app.js"></script>
+    
+    <%= yield_content(:script) %>
+
   </body>
 </html>

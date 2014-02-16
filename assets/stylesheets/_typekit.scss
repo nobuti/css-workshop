@@ -1,0 +1,41 @@
+@mixin proxima-light {
+  font-family: "proxima-nova",sans-serif;
+  font-style: normal;
+  font-weight: 100;
+}
+
+@mixin proxima-light-italic {
+  font-family: "proxima-nova",sans-serif;
+  font-style: italic;
+  font-weight: 100;
+}
+
+@mixin proxima-regular {
+  font-family: "proxima-nova",sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin proxima-regular-italic {
+  font-family: "proxima-nova",sans-serif;
+  font-style: italic;
+  font-weight: 400;
+}  
+
+@mixin proxima-bold {
+  font-family: "proxima-nova",sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@mixin proxima-bold-italic {
+  font-family: "proxima-nova",sans-serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+@mixin proxima-black {
+  font-family: "proxima-nova",sans-serif;
+  font-style: normal;
+  font-weight: 900;
+}
