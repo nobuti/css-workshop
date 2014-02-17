@@ -8,13 +8,35 @@ When using CSS properly, we can create powerful and beatuful web sites that are 
 - You know what is a webpage and how is its basic structure of an HTML page (html, body, head, ...)
 - You have a basic undertanding of the main html tags (div, p, br, ul, li, ...)
 
-_[Still work in progress.]_
+#### Running locally
+
+First, clone the repo and move to that folder:
+
+```
+git clone git@github.com:nobuti/css-workshop.git
+cd css-workshop
+```
+
+To bootstrap the app, you'll need Ruby 2.x. Just run:
+
+1. `bundle install`
+
+2. `foreman start`
+
+Then visit `http://0.0.0.0:5000`
 
 ## Outline
+
+This is still a **work in progress**, so the contents can be changed. So keep your fork in sync.
 
 - **Module 1: Introduction to CSS.**
 
   You'll learn what is CSS, why it is important and how you can add styles to your pages. You'll learn what is a CSS rule, and how powerful are selectors.
+
+- **Module 2: Cascading and Inheritance**
+- **Module 3: Styling Text**
+- **Module 4: Layout with CSS**
+- **Module 5: CSS3**
 
 ## License
 
