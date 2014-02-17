@@ -115,6 +115,7 @@
     <p>This is the most common method. The link is just a simple line of HTML that you put in the <code>head</code> section of your HTML document:</p>
     <pre><code lang="html">&lt;link rel="stylesheet" href="mystyles.css" media="screen" /></code></pre>
     <p>The media parameter specifies when the CSS rules are to be used. "screen" indicates for use on the computer screen. If you specify "print" then the rules will only be followed when the page is printed. You can include multiple CSS files if required.</p>
+    <p>[Recognized media types](http://www.w3.org/TR/CSS2/media.html#media-types)</p>
   </section>
 
   <section class="slide" id="embedding">
@@ -147,8 +148,23 @@
     <h2>Rules</h2>
     <p>In CSS terminology, a <em>rule</em> or <em>rule set</em> is a statement that tells browsers how to render particular elements. A rule consists of a <em>selector</em> followed by a <em>declaration block</em>, with one or more <em>property and value</em> pairs.</p>
     <pre><code lang="css">selector { 
-    property: property-value; 
+    property: property-value;
+    other-property: other-property-value; 
 }</code></pre>
+  </section>
+  
+  <section class="slide" id="values">
+
+    <h2>Values</h2>
+    <p>There are many property-specific units for values used in CSS, but there are some general units that are used by a number of properties and it is worth familiarizing yourself with these before continuing.</p>
+    <ul>
+      <li class="delayed thin"><em>px</em> is the unit for pixels.</li>
+      <li class="delayed thin"><em>em</em> is the unit for the calculated size of a font.</li>
+      <li class="delayed thin"><em>pt</em> is the unit for points, for measurements typically in printed media.</li>
+      <li class="delayed thin"><em>%</em> is the unit for… surprise… percentages.</li>
+      <li class="delayed thin">Other units include <em>pc</em> (picas), <em>cm</em> (centimeters), <em>mm</em> (millimeters) and <em>in</em> (inches).</li>
+    </ul>
+    <p class="delayed">We'll see some of these along the course.</p>
   </section>
 
   <section class="slide" id="try-it">
@@ -156,7 +172,9 @@
     <h2>Rules: Example</h2>
     <p>Try yourself. Edit the following CSS code:</p>
     <textarea class="snippet">color: white;
-background-color:#e67e22;</textarea>  
+background-color:#e67e22;
+font-size: 32px;
+width: 100%;</textarea>  
   </section>
   
   </section>
