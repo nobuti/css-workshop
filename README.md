@@ -4,7 +4,7 @@ When using CSS properly, we can create powerful and beatuful web sites that are 
 
 ## Prerequisites
 
-- If you are a ninja or a whatever rock start, this course is not for you.
+- If you are a ninja or a whatever rockstar, this course is not for you.
 - You know what is a webpage and how is its basic structure of an HTML page (html, body, head, ...)
 - You have a basic undertanding of the main html tags (div, p, br, ul, li, ...)
 
