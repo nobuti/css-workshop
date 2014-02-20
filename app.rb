@@ -10,8 +10,12 @@ class App < Sinatra::Application
     erb :index
   end
 
-  get "/module/1" do
-    erb :module1
+  get "/module/:which" do
+    begin
+      erb "module#{params[:which]}".to_sym
+    rescue Errno::ENOENT
+      erb :'404'
+    end 
   end
 
   not_found do
