@@ -34,6 +34,9 @@ This is still a **work in progress**, so the contents can be changed. So keep yo
   You'll learn what is CSS, why it is important and how you can add styles to your pages. You'll learn what is a CSS rule, and how powerful are selectors.
 
 - **Module 2: Cascading and Inheritance**
+  
+  You'll learn what the term _cascade_ means, how the browser resolve conflicts between rules and how the inheritance works in CSS.
+
 - **Module 3: Styling Text**
 - **Module 4: Layout with CSS**
 - **Module 5: CSS3**
