@@ -1,3 +1,15 @@
+/*
+* Clearfix
+*/
+%clearfix {
+  &:after {
+    content: '';
+    display: table;
+    line-height: 0;
+    clear: both;
+  }
+}
+
 #cover, .content {
   color: white;
   font-size: 20px;
@@ -24,4 +36,54 @@
   .modules {
     margin: 0 0 2em 0;
   }
+}
+
+/*******************************
+            Grid
+*******************************/
+
+.grid {
+  @extend %clearfix;
+  box-sizing: border-box;
+  display: block;
+  font-size: 0em;
+  margin: 0% -1.5%;
+  padding: 0%;
+  text-align: left;
+}
+
+.grid > .column {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 30px;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  text-align: left;
+  vertical-align: top;
+  width: 6.25%;
+}
+
+.grid > .column {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &:only-child {
+    width: 100%;
+  }
+}
+
+.one.column.grid > .column {
+  width: 100%;
+}
+
+.two.columns.grid > .column {
+  width: 50%;
+}
+
+.three.columns.grid > .column {
+  width: 33.3333%;
+}
+
+.four.columns.grid > .column {
+  width: 25%;
 }

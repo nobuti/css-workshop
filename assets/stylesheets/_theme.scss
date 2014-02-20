@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  @include proxima-regular;
+  @include proxima-light;
 }
 
 button {
@@ -180,7 +180,6 @@ ul > li li:before {
 }
 
   .slide p {
-    @include proxima-light;
     line-height: 1.2;
     margin-bottom: 1em;
   }

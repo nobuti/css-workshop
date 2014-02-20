@@ -1,0 +1,386 @@
+<% content_for :script do %>
+  <script src="/javascript/slideshow.js"></script>
+  <script src="/javascript/plugins/css-edit.js"></script>
+  <script src="/javascript/plugins/css-snippets.js"></script>
+  <script src="/javascript/plugins/css-controls.js"></script>
+  <script src="/javascript/plugins/code-highlight.js"></script>
+  <script>
+    var slideshow = new SlideShow();
+
+    var snippets = document.querySelectorAll('.snippet');
+    for(var i=0; i<snippets.length; i++) {
+      new CSSSnippet(snippets[i]);
+    }
+
+    var cssControls = document.querySelectorAll('.css-control');
+    for(var i=0; i<cssControls.length; i++) {
+      new CSSControl(cssControls[i]);
+    }
+  </script>
+<% end %>
+
+
+<header id="cover" class="slide">
+    <h1>CSS Workshop</h1>
+    <h2>Cascade, specificity and inheritance</h2>
+    <p class="attribution">
+      @nobuti</br>February 2014.
+    </p>
+</header>
+
+<section>
+  
+  <section class="slide" title="What does cascade mean?" id="cascade">
+    <h2>What is the cascade thing?</h2>
+
+    <p class="delayed">I always imagine that "cascading stylesheets" means something like <em>fighting stylesheets</em>.</p>
+
+    <p class="delayed">One rule tells your H3 tag to be red, another rule tells it to be green -- the rules are contradicting each other, who will win!? <strong>Stylesheet deathmatch!</strong></p>
+
+    <p class="delayed">OK maybe that's a slight exaggeration... Let's get serious.</p>
+
+    <p class="delayed">CSS styles can be specified in many ways, but they will all <em>cascade</em> into one stylesheet in the end. Sometimes <em>conflicts</em> will arise between the stylesheets that influence how styles are merged. </p>
+  </section>
+  
+  <section class="slide" title="Types of stylesheets" id="types-of-stylesheets">
+    <h2>Origin: Types of stylesheets</h2>
+
+    <p>HTML documents may have <strong>three types of stylesheets</strong> applied to them.</p>
+    <ul>
+      <li class="delayed"><strong>Browser stylesheets</strong>: Browsers apply stylesheets to all web documents. These are referred to as <em>default stylesheet</em>.</li>
+      <li class="delayed"><strong>User stylesheets</strong>: Most modern browser allow users to apply their own stylesheets within the browser.</li>
+      <li class="delayed"><strong>Author stylesheets</strong>: Web authors can apply one or more stylesheets to an HTML document.</li>
+    </ul>
+  </section>
+  
+  <section class="slide incomplete" id="grid">
+    <h2>Grids</h2>
+
+    <div class="grid">
+      <div class="column">
+        Hola soy una columna
+      </div>
+    </div>
+    
+    <div class="grid two columns">
+      <div class="column">
+        Hola soy una columna
+      </div>
+      <div class="column">
+        Y yo otra
+      </div>
+    </div>
+
+    <div class="grid three columns">
+      <div class="column">
+        Hola soy una columna
+      </div>
+      <div class="column">
+        Y yo otra
+      </div>
+      <div class="column">
+        Y otra más
+      </div>
+    </div>
+
+    <div class="grid four columns">
+      <div class="column">
+        Hola soy una columna
+      </div>
+      <div class="column">
+        Y yo otra
+      </div>
+      <div class="column">
+        Y otra más
+      </div>
+      <div class="column">
+        Y yo la última
+      </div>
+    </div>
+
+  </section>
+
+  <section class="slide" id="works">
+    <h2>How it works?</h2>
+    <p class="delayed">When a browser displays a document, it must combine the document's content with its style information. It processes the document in two stages:</p>
+    <ul>
+      <li class="delayed">The browser converts the markup language and the CSS into a structure called the <strong>DOM</strong></li>
+      <li class="delayed">The browser displays the contents of the DOM.</li>
+    </ul>
+    <p class="delayed"><a href="http://css-tricks.com/dom/">What is the DOM?</a> A DOM has a tree-like structure. Understanding the DOM helps you to design, debug and maintain your CSS.</p>
+  </section>
+</section>
+
+<section>
+  <header class="slide" id="adding-styles">
+    <h1>How to add styles to documents</h1>
+  </header>
+  
+  <section class="slide" id="adding-methods">
+    <h2>Adding styles</h2>
+    <p>There are 4 methods to add styles to our documents:</p>
+    <ul>
+      <li class="delayed">Linking to a separate CSS file</li>
+      <li class="delayed">Embedding CSS rules into the html</li>
+      <li class="delayed">Adding Inline CSS to HTML tags</li>
+      <li class="delayed">Importing a CSS file from within CSS</li>
+    </ul>
+    <p class="delayed">Cool, huh? Let's see how they works.</p>
+  </section>
+  
+  <section class="slide" id="linking">
+    <h2>Linking</h2>
+    <p>This is the most common method. The link is just a simple line of HTML that you put in the <code>head</code> section of your HTML document:</p>
+    <pre><code lang="html">&lt;link rel="stylesheet" href="mystyles.css" media="screen" /></code></pre>
+    <p>The media parameter specifies when the CSS rules are to be used. "screen" indicates for use on the computer screen. If you specify "print" then the rules will only be followed when the page is printed. You can include multiple CSS files if required.</p>
+    <p><a href="http://www.w3.org/TR/CSS2/media.html#media-types">Recognized media types</a></p>
+  </section>
+
+  <section class="slide" id="embedding">
+    <h2>Embedding</h2>
+    <p>You can also embed CSS rules directly into any HTML page. To do this you need to add the following code to the <code>head</code> of your HTML document:</p>
+    <pre><code lang="html">&lt;style media="screen" type="text/css">
+    Add style rules here
+&lt;/style></code></pre>
+    <p>The disadvantage with this approach is the styles must be downloaded every time someone visits the page, this can cause a slightly slower browsing experience.</p>
+  </section>
+  
+  <section class="slide" id="inline">
+    <h2>Inline</h2>
+    <p>Style rules can also be added directly to any HTML element. To do this you simply add a style parameter to the element and enter your style rules as the value.</p>
+    <pre><code lang="html">&lt;h2 style="color:red; background:black;">
+    This is a red heading with a black background
+&lt;/h2></code></pre>
+    <p>This is not a good method to use because it will bloat your HTML and make website maintenance a real headache. This breaks the law of the <em>separation of styles and content</em>.</p>
+  </section>
+
+  <section class="slide" id="importing">
+    <h2>Importing</h2>
+    <p>This lets us attach a new CSS file from within CSS itself. </p>
+    <pre><code lang="html">@import "newstyles.css";</code></pre>
+    <p>This technique helps us handle several files in a modularized way. You'll use it when you know preprocessors' magic.</p>
+  </section>
+  
+  <section class="slide" id="rules">
+    
+    <h2>Rules</h2>
+    <p>In CSS terminology, a <em>rule</em> or <em>rule set</em> is a statement that tells browsers how to render particular elements. A rule consists of a <em>selector</em> followed by a <em>declaration block</em>, with one or more <em>property and value</em> pairs.</p>
+    <pre><code lang="css">selector { 
+    property: property-value;
+    other-property: other-property-value; 
+}</code></pre>
+  </section>
+  
+  <section class="slide" id="values">
+
+    <h2>Values</h2>
+    <p>There are many property-specific units for values used in CSS, but there are some general units that are used by a number of properties and it is worth familiarizing yourself with these before continuing.</p>
+    <ul>
+      <li class="delayed thin"><em>px</em> is the unit for pixels.</li>
+      <li class="delayed thin"><em>em</em> is the unit for the calculated size of a font.</li>
+      <li class="delayed thin"><em>pt</em> is the unit for points, for measurements typically in printed media.</li>
+      <li class="delayed thin"><em>%</em> is the unit for… surprise… percentages.</li>
+      <li class="delayed thin">Other units include <em>pc</em> (picas), <em>cm</em> (centimeters), <em>mm</em> (millimeters) and <em>in</em> (inches).</li>
+    </ul>
+    <p class="delayed">We'll see some of these along the course.</p>
+  </section>
+
+  <section class="slide" id="try-it">
+
+    <h2>Rules: Example</h2>
+    <p>Try yourself. Edit the following CSS code:</p>
+    <textarea class="snippet">color: white;
+background-color:#e67e22;
+font-size: 32px;
+width: 100%;</textarea>  
+  </section>
+  
+  </section>
+  
+  <section>
+  <header class="slide">
+    <h1>Selectors</h1>
+  </header>
+
+  <section class="slide" id="selectors">
+    <h2>Selectors</h2>
+    <p>A selector is a simple pattern used to apply styles to elements. We can find these types:</p>
+    <ul>
+      <li class="delayed">Simple selector</li>
+      <li class="delayed">ID selector</li>
+      <li class="delayed">Class selector</li>
+      <li class="delayed">Attributte selector</li>
+      <li class="delayed">Pseudoclasses selectors</li>
+      <li class="delayed">Selectors based on relationships</li>
+    </ul>
+  </section>
+  
+  <section class="slide" id="simple-selector">
+    <h2>Simple selector</h2>
+    <pre><code lang="css">body { 
+    background-color: #f2f2f2; 
+}</code></pre>
+    <pre><code lang="css">h2 { 
+    font-family: 'Helvetica'; 
+}</code></pre>
+    <pre><code lang="css">p { 
+    line-height: 1.5; 
+}</code></pre>
+  </section>
+
+  <section class="slide" id="id-selector">
+    <h2>ID selector</h2>
+    <p>Rule of thumb: <em>IDs are unique.</em> Each element can have only one ID. Each page can have only one element with that ID.</p>
+    <pre><code lang="css">#menu { 
+    padding-left: 10px; 
+}</code></pre>
+    <pre><code lang="css">#author { 
+    font-size: 11px;
+}</code></pre>
+    <pre><code lang="css">#header { 
+    font-size: 2em;
+}</code></pre>
+  </section>
+  
+  <section class="slide" id="class-selector">
+    <h2>Class selector</h2>
+    <p>You can use the same class on multiple elements. You can use multiple classes on the same element.</p>
+    <pre><code lang="css">.menu { 
+    padding-left: 10px; 
+}</code></pre>
+    <pre><code lang="css">.author { 
+    font-size: 11px;
+}</code></pre>
+    <pre><code lang="css">.block { 
+    background-color: #fff;
+    border-radius: 4px;
+}</code></pre>
+  </section>
+
+  <section class="slide" id="attribute-selector">
+    <h2>Attribute selector</h2>
+    <p>Attribute selectors select an element using the presence of a given attribute or attribute value.</p>
+    <ul>
+      <li class="delayed thin"><strong>[attr]</strong>:  Element with an attribute name of attr.</li>
+      <li class="delayed thin"><strong>[attr=value]</strong>: Element with an attribute name of attr and whose value is "value".</li>
+      <li class="delayed thin"><strong>[attr~=value]</strong>: Element with an attribute includes "value" within a space separated list of values.</li>
+      <li class="delayed thin"><strong>[attr|=value]</strong>: Element with an attribute name of attr. Its value can be exactly “value” or can begin with “value”. Not useful, better next one.</li>
+      <li class="delayed thin"><strong>[attr^=value]</strong>: Element with an attribute name of attr and whose value start with "value".</li>
+      <li class="delayed thin"><strong>[attr$=value]</strong>: Element with an attribute name of attr and whose value ends with "value".</li>
+      <li class="delayed thin"><strong>[attr\*=value]</strong>: Element with an attribute name of attr and whose value contains "value" as substring.</li>
+    </ul>
+  </section>
+  
+  <section class="slide" id="attribute-selector-examples">
+    <h2>Attribute selector</h2>
+    <pre><code lang="css">img[alt=spacer] {
+    padding: 0;
+}</code></pre>
+    <pre><code lang="css">div[id*="post"]  { 
+    color: red; 
+}</code></pre>
+    <pre><code lang="css">input[type="text"] { 
+    padding: 3px; 
+}</code></pre>
+  </section>
+
+  <section class="slide" id="pseudoclasses-selector">
+    <h2>Pseudoclasses selector</h2>
+    <p>A CSS pseudo-class is a keyword added to selectors that specifies a special state of the element to be selected. </p>
+    <p class="delayed">We'll pay attention to them further, but here are some of them are:</p>
+    <ul>
+      <li class="delayed">:link, :visited, :active, :hover</li>
+      <li class="delayed">:focus</li>
+      <li class="delayed">:first-child, :last-child, :first-of-type, :last-of-type</li>
+      <li class="delayed">:nth-child, :nth-last-child, :nth-of-type, 
+      <li class="delayed">:empty, :not, :target</li>
+      <li class="delayed">:checked, :enabled, :disabled</li>
+    </ul>
+  </section>
+
+  <section class="slide" id="pseudoclasses-selector-examples">
+    <h2>Pseudoclasses selector</h2>
+    <pre><code lang="css">.hipster-link:hover { 
+    outline: dotted red; 
+}</code></pre>
+    <pre><code lang="css">input[type="radio"]:checked {
+    margin-left: 25px;
+}</code></pre>
+    <pre><code lang="css">span:first-child {
+    background-color: lime;
+}</code></pre>
+  </section>
+  
+  <section class="slide" id="relationships">
+    <h2>Selectors based on relationships</h2>
+    <p>CSS has some ways to select elements based on the relationships between elements. You can use these to make selectors that are more specific.</p>
+    <ul>
+      <li class="delayed"><strong>A E</strong>: Any E element that is a descendant of an A element, that is, a child, or a child of a child, etc.</li>
+      <li class="delayed"><strong>A > E</strong>: Any E element that is a child of an A element.</li>
+      <li class="delayed"><strong>A + E</strong>: Any E element that is the next sibling of a A element, that is, the next child of the same parent.</li>
+      <li class="delayed"><strong>A ~ E</strong>: Any E element that is sibling of a A element, not only the next one</li>
+    </ul>
+    <p class="delayed">We'll focus on the two first of them for now.</p>
+  </section>
+  
+  <section class="slide" id="relationships-examples">
+    <h2>Selectors based on relationships</h2>
+    <pre><code lang="css">header h1 { 
+    font-size: 24px; 
+}</code></pre>
+    <pre><code lang="css">.form > label {
+    color: #ccc;
+    margin-left: 25px;
+}</code></pre>
+    <pre><code lang="css">.active + .block {
+    display: block;
+}</code></pre>
+  </section>
+
+  <section class="slide" id="all-selector">
+    <h2>Bonus: The all selector</h2>
+    <p>You can also use the symbol * (asterisk) to mean "any element".</p>
+    <pre><code lang="css">* { 
+    box-sizing: border-box; 
+}</code></pre>
+    <pre><code lang="css">.block > * {
+    margin-top: 0;
+}</code></pre>
+  </section>
+  
+  <section class="slide" id="doctype">
+    <h2>Another bonus: Doctype and rendering mode</h2>
+    <p>HTML is out of the scope of this workshop. But Doctype has a special relationship with the way our styles are rendered.</p>
+    <p>If you are interested in reading more about DOCTYPE switching and the differences between rendering modes or if you want to peruse more detailed tables of DOCTYPEs and learn what modes they trigger in which browsers, here are some good resources to try out.</p>
+    <ul>
+      <li><a href="http://www.ericmeyeroncss.com/bonus/render-mode.html">Picking a Rendering Mode</a></li>
+      <li><a href="http://www.w3.org/wiki/Doctypes_and_markup_styles">Doctypes and markup styles</a></li>
+    </ul>
+    <p><em>Rule of thumb</em>: Use the html5 doctype <code>&lt;!DOCTYPE html></code> whenever you can.</p>
+  </section>
+
+  <section class="slide" id="performance">
+    <h2>And yes, another bonus: Performance</h2>
+    <p>Because we worry about performance, here there are some links to get a deeper knowledge.</p>
+    <ul>
+      <li><a href="https://medium.com/coding-design/f98103d09ce1">Putting the CSS in the head</a></li>
+      <li><a href="http://csswizardry.com/2011/09/writing-efficient-css-selectors/">Writing efficient CSS selectors</a></li>
+      <li><a href="http://smacss.com/book/selectors">Selectors performance</a></li>
+    </ul>
+  </section>
+  
+  <section class="slide" id="summary">
+    <h2>Summary</h2>
+    <ul>
+      <li class="delayed">We've seen what is CSS and how we can use it to add styles to our documents.</li>
+      <li class="delayed">We can add those styles to the document: linking a file, embeding styles, inline styles and using the import method.</li>
+      <li class="delayed">CSS is about rules, selectors, properties and values, <em>not content</em>.</li>
+      <li class="delayed">Selectors are <em>the most powerful</em> weapon to add style to elements.</li>
+    </ul>
+  </section>
+</section>
+
+<footer class="slide" id="end" title="The End">
+  <h2>Thank you!</h2>
+  <p>Get it or contribute at <a href="http://github.com/nobuti/css-workshop">http://github.com/nobuti/css-workshop</a></p>
+</footer>
